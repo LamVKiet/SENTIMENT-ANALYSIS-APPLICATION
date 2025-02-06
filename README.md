@@ -77,4 +77,4 @@ After running the application, open a web browser and navigate to [http://127.0.
 </p>
 
 ## Contact
-For any questions or feedback, please contact via email: dailoi.ddl@gmail.com.
+For any questions or feedback, please contact via email: l.vikiet21@gmail.com.
