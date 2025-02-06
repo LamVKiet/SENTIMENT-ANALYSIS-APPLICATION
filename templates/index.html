@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Xử lý sự kiện submit form
+            function submitForm() {
+                var review = $('textarea[name="review"]').val();
+                
+                $.ajax({
+                    url: '/analyze',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ review: review }),
+                    success: function(response) {
+                        $('#sentiment').text('Sentiment: ' + response.sentiment);
+                        $('#sentiment_image').attr('src', response.image_path);
+                        $('#sentiment_image').attr('alt', response.sentiment);
+                    }
+                });
+            }
+
+            // Bấm nút "Analyze"
+            $('form').on('submit', function(event) {
+                event.preventDefault();
+                submitForm();
+            });
+
+            // Nhấn phím "Enter"
+            $('textarea[name="review"]').on('keypress', function(event) {
+                if (event.which === 13) {
+                    event.preventDefault();
+                    submitForm();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div style="text-align: center;">
+        <h1>Sentiment Analysis</h1>
+        <img src="{{ url_for('static', filename='sentiment.png') }}" alt="Sentiment Analysis" style="width: 200px;">
+        <form>
+            <textarea name="review" rows="4" cols="50" placeholder="Enter your review here..."></textarea><br><br>
+            <input type="submit" value="Analyze">
+        </form>
+        <h2 id="sentiment"></h2>
+        <img id="sentiment_image" src="" alt="" style="width: 200px;">
+    </div>
+</body>
+</html>
