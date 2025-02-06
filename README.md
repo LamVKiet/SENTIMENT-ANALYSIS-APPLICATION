@@ -63,7 +63,7 @@ After running the application, open a web browser and navigate to [http://127.0.
 ### Home Page
 
 <p align="center">
-  <img src="static/giaodien.png" alt="User Interface">
+  <img src="static/UI.png" alt="User Interface">
 </p>
 
 ### Sentiment Analysis (Positive)
